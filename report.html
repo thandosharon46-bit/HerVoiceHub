@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report | HerVoiceHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="main-header">
+    <div class="header left">
+    <h1>
+    <img src="images/logo.png" alt="Logo">
+    HerVoiceHub
+</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="emergency.html">Emergency</a>
+        <a href="services.html">Services</a>
+        <a href="forum.html">Community</a>
+    </nav>
+</div>
+
+    <button onclick="quickExit()" class="exit-btn">Quick Exit</button>
+</header>
+<section>
+
+<section class="report-container">
+
+    <h2>Anonymous Incident Report</h2>
+    <p>Speak without fear. Your report is safe and anonymous.</p>
+
+    <form id="reportForm">
+
+        <label>Incident Type *</label>
+        <select required>
+            <option value="">Select type</option>
+            <option>Harassment</option>
+            <option>Assault</option>
+            <option>Domestic Violence</option>
+            <option>Stalking</option>
+            <option>Online Abuse</option>
+            <option>Other</option>
+        </select>
+
+        <label>Name</label>
+        <input type="name">
+
+        <label>Date</label>
+        <input type="date">
+
+        <label>Time</label>
+        <input type="time">
+
+        <label>Location (optional)</label>
+        <input type="text" placeholder="City or area">
+
+        <label>Perpetrator (optional)</label>
+        <input type="text">
+
+        <label>Description *</label>
+        <textarea required></textarea>
+
+        <label>Upload Evidence</label>
+        <input type="file">
+
+        <label>Report Type</label>
+        <select>
+            <option>Fully Anonymous</option>
+            <option>Pseudonymous/False name</option>
+            <option>Identifiable</option>
+        </select>
+
+        <button type="button" onclick="saveDraft()">Save Draft</button>
+        <button type="submit">Submit Report</button>
+
+    </form>
+
+    <p id="resultMessage"></p>
+
+</section>
+
+<section class="report-container">
+    <h2>Check Report Status</h2>
+
+    <input type="text" id="checkCode" placeholder="Enter your reference code">
+
+    <button type="button" onclick="checkStatus()">Check Status</button>
+
+    <p id="statusMessage"></p>
+</section>
+<section class="support section">
+    <h2>Immediate Help</h2>
+    <p>If you are in danger or need urgent support, please reach out:</p>
+
+    <ul>
+        <li><strong>Emergency Hotline (Nigeria):</strong> 112</li>
+        <li><strong>Women Support Line:</strong> 0800-123-4567</li>
+        <li>
+            <strong>NGO Support</strong>
+        <a href="https://warifng.org" target="_blank">WARIF Nigeria (Women at Risk International Foundation
+        </a>
+    </li>
+</ul>
+
+<p style="font-size: 14px; color: gray;">
+    Support Services may vary depending on your country or location.
+</p>
+
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2026 HerVoiceHub | Developed by HerTech Squad</p>
+        <img src="images/logo.png" alt="Logo">
+    </div>
+</footer>
+
+<script>
+
+/* QUICK EXIT */
+function quickExit() {
+    window.location.href = "https://www.google.com";
+}
+
+/* SAVE DRAFT */
+function saveDraft() {
+    const description = document.querySelector("textarea").value;
+    localStorage.setItem("draftReport", description);
+    alert("Draft saved!");
+}
+
+/* LOAD DRAFT */
+window.onload = function() {
+    const saved = localStorage.getItem("draftReport");
+    if (saved) {
+        document.querySelector("textarea").value = saved;
+    }
+}
+
+/* SUBMIT */
+document.getElementById("reportForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const code = "REF-" + Math.floor(Math.random() * 100000);
+    localStorage.setItem("reportCode", code);
+
+    document.getElementById("resultMessage").innerText =
+        "Report submitted successfully. Your reference code is: " + code;
+});
+
+/* CHECK STATUS */
+function checkStatus() {
+    const input = document.getElementById("checkCode").value;
+    const saved = localStorage.getItem("reportCode");
+
+    if (input === saved) {
+        document.getElementById("statusMessage").innerText =
+        "Your report has been received and is under review. Please keep your reference code safe.";
+    } else {
+        document.getElementById("statusMessage").innerText =
+        "No report found with that code.";
+    }
+}
+</script>
+
+</body>
+</html>

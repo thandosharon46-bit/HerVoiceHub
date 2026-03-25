@@ -1,0 +1,278 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+     
+
+    <title>Community Forum</title> 
+
+</head> 
+
+<link rel="stylesheet" href="forum.css"> 
+
+<body> 
+
+    <header class="main-header">  
+
+ 
+
+    <h1>  
+
+ 
+
+    <img src="images/logo.png" alt="Logo">  
+
+ 
+
+    HerVoiceHub  
+
+ 
+
+</h1>  
+
+ 
+
+  
+
+ 
+
+    <nav>  
+
+ 
+
+        <a href="index.html">Home</a>  
+
+ 
+
+        <a href="report.html">Report</a>  
+
+ 
+
+        <a href="emergency.html">Emergency</a>  
+
+ 
+
+        <a href="services.html">Services</a>  
+
+ 
+
+        <a href="forum.html">Community</a>  
+
+ 
+
+    </nav>  
+
+ 
+
+  
+
+ 
+
+    <button onclick="quickExit()" class="exit-btn">Quick Exit</button>  
+
+ 
+
+</header>  
+
+ 
+
+    <div class="app-container"> 
+
+        <aside class="sidebar"> 
+
+            <h2>Channels</h2> 
+
+            <nav> 
+
+                <a href="#" class="active">general-chat</a> 
+
+                <a href="#">tech-support</a> 
+
+                <a href="#">announcements</a> 
+
+            </nav> 
+
+             
+
+        </aside> 
+
+ 
+
+        <main class="feed"> 
+
+            <header class="feed-header"> 
+
+                <h1>General-Chat</h1> 
+
+            </header> 
+
+             
+
+            <div class="message-input-container"> 
+
+                <input type="text" id="messageBox" onkeydown="if(event.key === 'Enter') postMessage()"> 
+
+                <button onclick="postMessage()" id="sendBtn">Send</button> 
+
+            </div> 
+
+            <div> 
+
+                <br><br> 
+
+            </div> 
+
+ 
+
+            <div class="post-card"> 
+
+                <div class="post-header"> 
+
+                    <span class="username">Alex_Dev</span> 
+
+                    <span class="timestamp">2h ago</span>
+                    <button class="report-btn" onclick="toggleModal('reportModal')">Report/Block</button> 
+
+                </div> 
+
+                <p class="post-content">Does anyone have tips for implementing an audit log effectively?</p> 
+
+                 
+
+                <div class="replies"> 
+
+                    <div class="reply"> 
+
+                        <strong>Moderator_Sam:</strong> Check the documentation on database triggers! 
+
+                    </div> 
+
+                </div> 
+
+            </div> 
+
+        </main> 
+
+ 
+
+        <aside class="mod-queue"> 
+
+            <h3>Mod Queue</h3> 
+
+            <div class="mod-item"> 
+
+                <p>Flagged: "Spam Link..."</p> 
+
+                <div class="mod-actions"> 
+
+                    <button class="approve">Keep</button> 
+
+                    <button class="delete">Remove</button> 
+
+                </div> 
+
+            </div> 
+
+            <div> 
+
+                <br> 
+
+                <br> 
+
+            </div> 
+
+        <div id="reportModal" class="modal"> 
+
+        <div class="modal-content"> 
+
+            <h3>Report Content</h3> 
+
+            <p>Select a category for this report:</p> 
+
+            <select id="reportCategory"> 
+
+                <option>Harassment</option> 
+
+                <option>Doxing</option> 
+
+                <option>Threats</option> 
+
+                <option>Spam</option> 
+
+                <option>Self-harm risk</option> 
+
+            </select> 
+
+            <div class="modal-buttons"> 
+
+                <button class ="approve">Cancel</button> 
+
+                <button class="confirm-btn">Submit Report</button> 
+
+            </div> 
+
+        </div> 
+
+    </div> 
+
+    </aside> 
+
+    </div> 
+
+    <footer class="footer">  
+
+ 
+
+    <div class="footer-content">  
+
+ 
+
+        <p>© 2026 HerVoiceHub | Developed by HerTech Squad</p>  
+
+ 
+
+        <img src="images/logo.png" alt="Logo">  
+
+ 
+
+    </div>  
+
+ 
+
+</footer>  
+
+ 
+
+  
+
+ 
+
+<script>  
+
+ 
+
+function quickExit() {  
+
+ 
+
+    window.location.href = "https://www.google.com";  
+
+ 
+
+}  
+
+ 
+
+</script>  
+
+ 
+
+</body> 
+
+</html> 

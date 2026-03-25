@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerVoiceHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="main-header">
+   <div class="header left">
+    <h1>
+    <img src="images/logo.png" alt="Logo">
+    HerVoiceHub
+</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="emergency.html">Emergency</a>
+        <a href="services.html">Services</a>
+        <a href="forum.html">Community</a>
+    </nav>
+</div>
+
+    <button onclick="quickExit()" class="exit-btn">Quick Exit</button>
+</header>
+
+</head>
+<body>
+  <main class="card">
+    <h1>Emergency Alert Center</h1>
+    <p class="meta">Trigger in 3 steps: press, confirm, send. Cancel window configurable (default 10s).</p>
+
+    <section id="configSection">
+      <h2>Contacts + Settings</h2>
+      <label>
+        Trusted contacts (comma-separated phone/email):
+        <textarea id="contactsInput" rows="3" placeholder="alice@example.com, bob@example.com"></textarea>
+      </label>
+      <label>
+        Partner escalation:
+        <select id="escalationSelect">
+          <option value="none">None</option>
+          <option value="police">Police hot-line</option>
+          <option value="medical">Medical emergency</option>
+          <option value="security">Security partner</option>
+        </select>
+      </label>
+      <label><input id="locationShare" type="checkbox" checked /> Share approximate location</label>
+      <label>
+        Pre-written message:
+        <textarea id="messageInput" rows="3">I need help urgently. Sent from the emergency app.</textarea>
+      </label>
+      <label>
+        Cancel window seconds:
+        <input id="cancelWindow" type="number" min="3" max="60" value="10" />
+      </label>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid #ccc; margin: 1rem 0;">
+
+    <section id="activationSection" style="margin-top:1.3rem">
+      <button class="button-large alert-button" id="holdButton">Hold to Activate Emergency Alert</button>
+      <p id="ifAlertText" class="meta">Long hold (1.2+ s) then confirm PIN. Cancel countdown appears after activation.</p>
+      <div id="countdownContainer" class="status hidden">
+        <p class="danger">Cancel available for <span id="countdown">0</span>s</p>
+        <button id="cancelSentBtn" class="button-large" style="background:#334155;border:1px solid #475569;">Cancel Alert</button>
+      </div>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid #ccc; margin: 1rem 0;">
+
+    <section id="confirmSection" class="hidden">
+      <h2>Confirm Alert</h2>
+      <p class="meta">Step 2: enter PIN/gesture to prevent false positives.</p>
+      <label>
+        Enter PIN (1234 for demo):
+        <input id="pinInput" type="password" maxlength="6" placeholder="PIN" />
+      </label>
+      <button id="confirmBtn" class="button-large" style="background:#2563eb;">Confirm and Send</button>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid #ccc; margin: 1rem 0;">
+
+     <!-- Confirm Alert Section -->
+    <section id="confirmSection">
+      <h2>Confirm Alert</h2>
+      <p class="meta">Step 2: enter PIN/gesture to prevent false positives.</p>
+      <label>
+        Enter PIN (1234 for demo):
+        <input id="pinInput" type="password" maxlength="6" placeholder="PIN" />
+      </label>
+      <button id="confirmBtn" class="button-large button-blue">Confirm and Send</button>
+    </section>
+
+    <hr>
+
+    <!-- Alert Status Section (hidden until PIN is correct) -->
+    <section id="statusSection" class="hidden status">
+      <h2>Alert Status</h2>
+      <p id="statusMessage"></p>
+      <p><strong>To:</strong> <span id="dgRecipients"></span></p>
+      <p><strong>Escalation:</strong> <span id="dgEscalation"></span></p>
+      <p><strong>Location Sharing:</strong> <span id="dgLocation"></span></p>
+      <p><strong>Message:</strong> <span id="dgMessage"></span></p>
+
+      <h3>Safety Checklist</h3>
+      <ul>
+        <li>Stay calm and breathe slowly.</li>
+        <li>Move somewhere safer if possible.</li>
+        <li>Keep phone accessible and camera unmuted.</li>
+      </ul>
+
+      <div class="row">
+        <button id="callServiceBtn" class="button-large button-green">Call Emergency Services</button>
+        <button id="textServiceBtn" class="button-large button-sky">Text Trusted Contact</button>
+      </div>
+
+      <div id="afterActions" class="meta">If needed, repeat the alert process.</div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2026 HerVoiceHub | Developed by HerTech Squad</p>
+        <img src="images/logo.png" alt="Logo">
+    </div>
+</footer>
+
+  <script>
+    // Elements
+    const confirmBtn = document.getElementById('confirmBtn');
+    const pinInput = document.getElementById('pinInput');
+    const confirmSection = document.getElementById('confirmSection');
+    const statusSection = document.getElementById('statusSection');
+
+    // Alert data (demo)
+    const alertData = {
+      recipients: "John, Sarah",
+      escalation: "Level 1",
+      location: "Durban, KZN",
+      message: "Help needed!"
+    };
+
+    // Confirm PIN
+    confirmBtn.addEventListener('click', () => {
+      const enteredPin = pinInput.value;
+      if (enteredPin === '1234') {
+        // Hide confirm section, show status section
+        confirmSection.classList.add('hidden');
+        statusSection.classList.remove('hidden');
+
+        // Populate alert info
+        document.getElementById('statusMessage').textContent = "Alert successfully sent!";
+        document.getElementById('dgRecipients').textContent = alertData.recipients;
+        document.getElementById('dgEscalation').textContent = alertData.escalation;
+        document.getElementById('dgLocation').textContent = alertData.location;
+        document.getElementById('dgMessage').textContent = alertData.message;
+      } else {
+        alert('Incorrect PIN. Try again.');
+      }
+    });
+
+    // Call Emergency Services
+    document.getElementById('callServiceBtn').addEventListener('click', () => {
+      window.location.href = 'tel:112'; // Replace with local emergency number if needed
+    });
+
+    // Text Trusted Contact
+    document.getElementById('textServiceBtn').addEventListener('click', () => {
+      const message = encodeURIComponent("Emergency! Please help me.");
+      const contacts = ["+27123456789"]; // Replace with real contacts
+      contacts.forEach(contact => {
+        window.open(`sms:${contact}?body=${message}`);
+      });
+      });
+
+</script>
+</body>
+</html>
