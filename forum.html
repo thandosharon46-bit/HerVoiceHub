@@ -1,125 +1,55 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerVoiceHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-<html lang="en"> 
+<body>
 
-<head> 
+<header class="main-header">
+   <div class="header left">
+    <h1>
+    <img src="images/logo.png" alt="Logo">
+    HerVoiceHub
+</h1>
 
-    <meta charset="UTF-8"> 
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="emergency.html">Emergency</a>
+        <a href="services.html">Services</a>
+        <a href="forum.html">Community</a>
+    </nav>
+</div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-     
-
-    <title>Community Forum</title> 
-
-</head> 
-
-<link rel="stylesheet" href="forum.css"> 
-
-<body> 
-
-    <header class="main-header">  
-
- 
-
-    <h1>  
-
- 
-
-    <img src="images/logo.png" alt="Logo">  
-
- 
-
-    HerVoiceHub  
-
- 
-
-</h1>  
-
- 
-
-  
-
- 
-
-    <nav>  
-
- 
-
-        <a href="index.html">Home</a>  
-
- 
-
-        <a href="report.html">Report</a>  
-
- 
-
-        <a href="emergency.html">Emergency</a>  
-
- 
-
-        <a href="services.html">Services</a>  
-
- 
-
-        <a href="forum.html">Community</a>  
-
- 
-
-    </nav>  
-
- 
-
-  
-
- 
-
-    <button onclick="quickExit()" class="exit-btn">Quick Exit</button>  
-
- 
-
-</header>  
-
- 
+    <button onclick="quickExit()" class="exit-btn">Quick Exit</button>
+</header>
+    
+<main class="container">
+    <h2>Community Forum</h2>
+    <section class="intro">
 
     <div class="app-container"> 
-
         <aside class="sidebar"> 
-
             <h2>Channels</h2> 
-
             <nav> 
-
                 <a href="#" class="active">general-chat</a> 
-
                 <a href="#">tech-support</a> 
-
                 <a href="#">announcements</a> 
-
-            </nav> 
-
-             
-
+            </nav>       
         </aside> 
-
- 
 
         <main class="feed"> 
 
             <header class="feed-header"> 
-
                 <h1>General-Chat</h1> 
-
             </header> 
-
-             
-
             <div class="message-input-container"> 
-
                 <input type="text" id="messageBox" onkeydown="if(event.key === 'Enter') postMessage()"> 
-
                 <button onclick="postMessage()" id="sendBtn">Send</button> 
-
             </div> 
 
             <div> 
@@ -127,8 +57,6 @@
                 <br><br> 
 
             </div> 
-
- 
 
             <div class="post-card"> 
 
